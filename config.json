@@ -1,0 +1,13 @@
+﻿{
+    "connectionString": "mongodb+srv://pramod:Apple@cluster-one.zrube.mongodb.net/meanDB?retryWrites=true&w=majority",
+    "secret": "af5c1df6-5f18-4de8-bf18-be4b2b448fc8",
+    "emailFrom": "noreply@appreciate.com",
+    "smtpOptions": {
+        "host": "smtp.gmail.com",
+        "port": 465,
+        "auth": {
+            "user": "ipram93@gmail.com",
+            "pass": "9449249067Apple"
+        }
+    }
+}
