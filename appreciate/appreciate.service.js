@@ -50,8 +50,7 @@ async function sendAppreciateEmail(params, origin) {
                    <p>An eCard has been sent to the following recipients:</p>
                    ${params.reciever[0].name}
                    <p>Thank you.</p>`;
-    recieveMessage =`<img src="cid:logo1"/>
-                    <h2>${params.title}</h2>
+    recieveMessage =`<h2>${params.title}</h2>
                     <p>To : ${params.reciever[0].name}</p>
                     <p>${params.message}</p>
                     <p>From : ${params.name}</p>
@@ -64,7 +63,7 @@ async function sendAppreciateEmail(params, origin) {
     await sendEmail({
         to: params.reciever[0].email,
         subject: 'You have recieved a new eCard',
-        html: `${recieveMessage}`,
+        html: `<img src="cid:logo1"/> <br/>${recieveMessage}`,
         attachments: [{
             filename: 'model.png',
             path: __dirname +`/model.png`,
