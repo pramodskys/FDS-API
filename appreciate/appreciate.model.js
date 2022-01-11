@@ -15,7 +15,7 @@ const schema = new Schema({
 });
 
 schema.virtual('isVerified').get(function () {
-    console.log(this.verified + 'in model')
+    // console.log(this.verified + 'in model')
     return !!(this.verified || this.passwordReset);
 });
 

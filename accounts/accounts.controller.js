@@ -7,6 +7,7 @@ const Role = require('_helpers/role');
 const accountService = require('./account.service');
 
 // routes
+router.get('/insertAll',insertAll);
 router.post('/authenticate', authenticateSchema, authenticate);
 router.post('/refresh-token', refreshToken);
 router.post('/revoke-token', authorize(), revokeTokenSchema, revokeToken);
@@ -170,6 +171,14 @@ function searchUsers(req, res, next) {
         .catch(next);
 }
 
+function insertAll(req,res,next){
+    accountService.insertAll()
+    .then(accounts =>{
+        res.json(accounts)
+    })
+    .catch(next)
+}
+
 function getById(req, res, next) {
     // users can get their own account and admins can get any account
     if (req.params.id !== req.user.id && req.user.role !== Role.Admin) {
@@ -183,7 +192,6 @@ function getById(req, res, next) {
 
 function createSchema(req, res, next) {
     const schema = Joi.object({
-        title: Joi.string().required(),
         firstName: Joi.string().required(),
         lastName: Joi.string().required(),
         fullName: Joi.string().required(),
@@ -204,10 +212,8 @@ function create(req, res, next) {
 
 function updateSchema(req, res, next) {
     const schemaRules = {
-        title: Joi.string().empty(''),
         firstName: Joi.string().empty(''),
         lastName: Joi.string().empty(''),
-        employeeId: Joi.string.empty(''),
         fullName:Joi.string().empty(''),
         email: Joi.string().email().empty(''),
         password: Joi.string().min(6).empty(''),

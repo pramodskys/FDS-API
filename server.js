@@ -8,6 +8,7 @@ const errorHandler = require('_middleware/error-handler');
 const mongoose = require('mongoose');
 const Account = require('./accounts/account.model')
 
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -26,6 +27,12 @@ app.use('/appreciate', require('./appreciate/appreciate.controller'));
 //         res.status(200).json(result)
 //     })
 // })
+function randomTokenString() {
+    return crypto.randomBytes(40).toString('hex');
+}
+function hash(password) {
+    return bcrypt.hashSync(password, 10);
+}
 
 // swagger docs route
 app.use('/api-docs', require('_helpers/swagger'));

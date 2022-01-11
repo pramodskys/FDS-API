@@ -26,6 +26,7 @@
         "rootpath": "^0.1.2",
         "swagger-ui-express": "^4.1.4",
         "uuid": "^8.3.2",
+        "xlsx": "^0.17.4",
         "yamljs": "^0.3.0"
     },
     "devDependencies": {
@@ -33,5 +34,5 @@
     },
     "engines": {
         "node": "16.13.0"
-      }
+    }
 }

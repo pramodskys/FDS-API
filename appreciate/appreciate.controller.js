@@ -11,6 +11,7 @@ const authorize = require('_middleware/authorize')
 // routes
 router.post('/', authorize(),appreciateSchema, appreciate);
 router.get('/',authorize(), getAppriciate);
+router.get('/posts/:skip/:limit',authorize(), getPosts);
 // router.get('/:id',authorize(),getUserAppreciate())
 router.get('/recieve/:id', authorize(), getRecievedAppreciate);
 router.get('/:id', authorize(), getSentAppreciate);
@@ -52,6 +53,14 @@ function appreciate(req, res, next) {
 }
 function getAppriciate(req, res, next) {
     appreciateService.getAll()
+        .then(appreciate => res.json(appreciate))
+        .catch(next);
+}
+
+function getPosts(req, res, next) {
+    let {skip,limit} = req.params
+    appreciateService.appreciatePage(skip,limit)
+    console.log("skip limit in controller :",skip,limit)
         .then(appreciate => res.json(appreciate))
         .catch(next);
 }

@@ -9,6 +9,7 @@ const { any } = require('joi');
 
 module.exports = {
     sendAppreciate,
+    appreciatePage,
     getAll,
     getRecievedAppreciate,
     getSentAppreciate
@@ -19,6 +20,12 @@ async function getAll() {
     const appreciate = await db.Appreciate.find().sort({ "created": -1 });
     return appreciate;
 }
+//Get all with Pagination 
+async function appreciatePage() {
+    const appreciate = await db.Appreciate.find().skip(skip).limit(limit).sort({ "created": -1 });;
+    return appreciate;
+}
+
 async function sendAppreciate(params, origin) {
     // create appreciate object
     console.log("params :", JSON.stringify(params))
@@ -62,11 +69,11 @@ async function sendAppreciateEmail(params, origin) {
     });
     await sendEmail({
         to: params.reciever[0].email,
-        subject: 'You have recieved a new eCard',
+        subject: 'You have received a new eCard',
         html: `<img src="cid:logo1"/> <br/>${recieveMessage}`,
         attachments: [{
             filename: 'model.png',
-            path: __dirname +`/model.png`,
+            path: __dirname + `./model.png`,
             cid: 'logo1' //same cid value as in the html img src
         }]
     });

@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
-  title: Node.js Sign-up and Verification API
-  description: Node.js + MongoDB - API with email sign-up, verification, authentication and forgot password
+  title: Node.js API for Appreciate app
+  description: Appreciate app backend
   version: 1.0.0
 
 servers:

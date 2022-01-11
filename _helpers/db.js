@@ -8,6 +8,7 @@ module.exports = {
     Account: require('accounts/account.model'),
     Appreciate: require('appreciate/appreciate.model'),
     RefreshToken: require('accounts/refresh-token.model'),
+    Test: require('accounts/test.model'),
     isValidId
 };
 
