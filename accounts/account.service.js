@@ -374,14 +374,14 @@ async function sendRegisteredSuccesAll(account) {
         let message = `<p>Hi ${user.user},</p>
             <p>Welcome to Appreciate App!</p>
              <p>Please use the below credentials to login to the app</p>
-             <p><a href="${url}">Login</a></p>
+             <p>Website : <a href="${url}">Login</a></p>
              <p>User name : ${user.email}</p>
              <p>Password : ${user.password}</p>`;
      
         await sendEmail({
                     to: user.email,
                     subject: 'Appreciate day 2022 - Login details',
-                    html: `<h4>Reset Password Email</h4>
+                    html: `<h4>Welcome to Appreciate App 2022</h4>
                            ${message}`
                 });
         i++;

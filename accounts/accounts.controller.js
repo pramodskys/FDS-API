@@ -47,6 +47,7 @@ function authenticate(req, res, next) {
 
 function refreshToken(req, res, next) {
     const token = req.cookies.refreshToken;
+    console.log('Cookies = ' + JSON.stringify(req.cookies));
     const ipAddress = req.ip;
     accountService.refreshToken({ token, ipAddress })
         .then(({ refreshToken, ...account }) => {
@@ -254,11 +255,20 @@ function _delete(req, res, next) {
 // helper functions
 
 function setTokenCookie(res, token) {
+    let cookieOptions ;
     // create cookie with refresh token that expires in 7 days
-    const cookieOptions = {
-        httpOnly: true,
-        expires: new Date(Date.now() + 7*24*60*60*1000)
-    };
+    if (process.env.NODE_ENV === 'production') {
+        cookieOptions = {
+            httpOnly: true,
+            sameSite: 'none', secure: true,
+            expires: new Date(Date.now() + 7*24*60*60*1000)
+        };
+    } else {
+        cookieOptions = {
+            httpOnly: true,
+            expires: new Date(Date.now() + 7*24*60*60*1000)
+        };
+    }
     res.cookie('refreshToken', token, cookieOptions);
 }
 
