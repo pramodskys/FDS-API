@@ -92,7 +92,7 @@ async function insertAll(){
     //Parsing data and updating it(password,verified)
     while(i < len){
         let randomstring = Math.random().toString(36).slice(-8);
-       let email_obj = {user :json_sheet[i].fullName,password:randomstring,email:json_sheet[i].email}
+       let email_obj = {user :json_sheet[i].fullName,password:randomstring,email:json_sheet[i].email, employee_role:json_sheet[i].employee_role}
        email_arr.push(email_obj)
         json_sheet[i].verificationToken = randomTokenString();
         json_sheet[i].passwordHash = hash(randomstring);
@@ -304,8 +304,8 @@ function randomTokenString() {
 }
 
 function basicDetails(account) {
-    const { id, firstName,fullName, lastName, employeeId, email, role, created, updated, isVerified } = account;
-    return { id, firstName,fullName, lastName, employeeId, email, role, created, updated, isVerified };
+    const { id, firstName,fullName, lastName, employeeId,employee_role, email, role, created, updated, isVerified } = account;
+    return { id, firstName,fullName, lastName, employeeId,employee_role, email, role, created, updated, isVerified };
 }
 
 async function sendVerificationEmail(account, origin) {
@@ -375,7 +375,7 @@ async function sendRegisteredSuccesAll(account) {
             <p>Welcome to Appreciate App!</p>
              <p>Please use the below credentials to login to the app</p>
              <p>Website : <a href="${url}">Login</a></p>
-             <p>User name : ${user.email}</p>
+             <p>Email : ${user.email}</p>
              <p>Password : ${user.password}</p>`;
      
         await sendEmail({

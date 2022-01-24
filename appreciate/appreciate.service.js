@@ -50,6 +50,7 @@ async function getRecievedAppreciate(id) {
 
 async function sendAppreciateEmail(params, origin) {
     let sendMessage;
+    let url_history = 'https://appreciateday.int.thomsonreuters.com/my-history';
     let recieveMessage = ''
 
 
@@ -57,10 +58,11 @@ async function sendAppreciateEmail(params, origin) {
                    <p>An eCard has been sent to the following recipients:</p>
                    ${params.reciever[0].name}
                    <p>Thank you.</p>`;
-    recieveMessage =`<h2>${params.title}</h2>
+    recieveMessage =`<p>Trait : <strong>${params.title}</strong></p>
                     <p>To : ${params.reciever[0].name}</p>
-                    <p>${params.message}</p>
+                    <p>Message: ${params.message}</p>
                     <p>From : ${params.name}</p>
+                    <p><a href="${url_history}">See your eCard here</a></p>
                     <p>Recieved On :${new Date()}</p>`
     await sendEmail({
         to: params.email,
@@ -70,11 +72,12 @@ async function sendAppreciateEmail(params, origin) {
     await sendEmail({
         to: params.reciever[0].email,
         subject: 'You have received a new eCard',
-        html: `<img src="cid:logo1"/> <br/>${recieveMessage}`,
-        attachments: [{
-            filename: 'model.png',
-            path: __dirname + `./model.png`,
-            cid: 'logo1' //same cid value as in the html img src
-        }]
+        // html: `<img src="cid:logo1"/> <br/>${recieveMessage}`,
+        // attachments: [{
+        //     filename: 'model.png',
+        //     path: __dirname + `./model.png`,
+        //     cid: 'logo1' //same cid value as in the html img src
+        // }]
+        html: `${recieveMessage}`
     });
 }

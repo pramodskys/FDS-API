@@ -25,6 +25,7 @@ function appreciateSchema(req, res, next) {
         employeeId:Joi.string().required(),
         name:Joi.string().required(),
         email:Joi.string().email().required(),
+        employee_role: Joi.string(),
         message:Joi.string().required(),
         title:Joi.string().required(),
         description:Joi.string().required(),

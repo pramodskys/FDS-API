@@ -8,6 +8,7 @@ const schema = new Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     fullName: { type: String, required: true },
+    employee_role: { type: String},
     acceptTerms: Boolean,
     role: { type: String, required: true },
     verificationToken: String,

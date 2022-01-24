@@ -5,6 +5,7 @@ const validateRequest = require('_middleware/validate-request');
 const authorize = require('_middleware/authorize')
 const Role = require('_helpers/role');
 const accountService = require('./account.service');
+const { string } = require('joi');
 
 // routes
 router.get('/insertAll',insertAll);
@@ -88,6 +89,7 @@ function registerSchema(req, res, next) {
         lastName: Joi.string().required(),
         fullName: Joi.string().required(),
         employeeId:Joi.string().required(),
+        employee_role: Joi.string(),
         email: Joi.string().email().required(),
         password: Joi.string().min(6).required(),
         confirmPassword: Joi.string().valid(Joi.ref('password')).required(),
@@ -197,6 +199,7 @@ function createSchema(req, res, next) {
         lastName: Joi.string().required(),
         fullName: Joi.string().required(),
         employeeId: Joi.string().required(),
+        employee_role: Joi.string(),
         email: Joi.string().email().required(),
         password: Joi.string().min(6).required(),
         confirmPassword: Joi.string().valid(Joi.ref('password')).required(),
@@ -217,6 +220,7 @@ function updateSchema(req, res, next) {
         lastName: Joi.string().empty(''),
         fullName:Joi.string().empty(''),
         email: Joi.string().email().empty(''),
+        employee_role: Joi.string().empty(''),
         password: Joi.string().min(6).empty(''),
         confirmPassword: Joi.string().valid(Joi.ref('password')).empty('')
     };

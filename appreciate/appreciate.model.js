@@ -5,6 +5,7 @@ const schema = new Schema({
     employeeId:{ type: String, required: true },
       name:{ type: String, required: true },
       email:{ type: String, required: true },
+      employee_role:{ type: String },
       message:{ type: String, required: true },
       title:{ type: String, required: true },
       description:{ type: String, required: true },
