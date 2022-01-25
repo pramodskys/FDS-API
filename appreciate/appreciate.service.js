@@ -34,7 +34,7 @@ async function sendAppreciate(params, origin) {
     await appreciate.save();
 
     // send email
-    await sendAppreciateEmail(params, origin);
+    //await sendAppreciateEmail(params, origin);
 }
 async function getSentAppreciate(id) {
     let query = { "employeeId": id }
